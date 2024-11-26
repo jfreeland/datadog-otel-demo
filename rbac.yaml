@@ -1,0 +1,70 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: datadog-otel-agent
+rules:
+  - apiGroups: # Kubelet connectivity
+      - ""
+    resources:
+      - nodes/metrics
+      - nodes/spec
+      - nodes/proxy
+      - nodes/stats
+    verbs:
+      - get
+  - apiGroups:
+      - ""
+    resources:
+      - services
+      - events
+      - endpoints
+      - pods
+      - nodes
+      - namespaces
+      - componentstatuses
+      - limitranges # needed?
+    verbs:
+      - get
+      - list
+      - watch
+  - nonResourceURLs:
+      - "/version"
+      - "/healthz"
+    verbs:
+      - get
+  - nonResourceURLs:
+      - "/metrics"
+      - "/metrics/slis"
+    verbs:
+      - get
+  - apiGroups:
+      - "apps"
+    resources:
+      - deployments
+      - replicasets
+      - daemonsets
+      - statefulsets
+    verbs:
+      - list
+      - get
+      - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: datadog-otel-agent
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: datadog-otel-agent
+subjects:
+  - kind: ServiceAccount
+    name: datadog-otel-agent
+    namespace: platform
+---
+apiVersion: v1
+kind: ServiceAccount
+automountServiceAccountToken: true
+metadata:
+  name: datadog-otel-agent
+  namespace: platform

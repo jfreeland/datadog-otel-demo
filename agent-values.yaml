@@ -9,7 +9,7 @@
 nameOverride: # ""
 
 # fullnameOverride -- Override the full qualified app name
-fullnameOverride: # ""
+fullnameOverride: opentelemetry-collector
 
 # targetSystem -- Target OS for this deployment (possible values: linux, windows)
 targetSystem: "linux"
@@ -302,7 +302,7 @@ datadog:
           fieldPath: status.hostIP
     # datadog.kubelet.tlsVerify -- Toggle kubelet TLS verification
     # @default -- true
-    tlsVerify: # false
+    tlsVerify: false
     # datadog.kubelet.hostCAPath -- Path (on host) where the Kubelet CA certificate is stored
     # @default -- None (no mount from host)
     hostCAPath:
@@ -449,7 +449,7 @@ datadog:
     # datadog.logs.enabled -- Enables this to activate Datadog Agent log collection
 
     ## ref: https://docs.datadoghq.com/agent/basic_agent_usage/kubernetes/#log-collection-setup
-    enabled: false
+    enabled: true
 
     # datadog.logs.containerCollectAll -- Enable this to allow log collection for all containers
 
@@ -679,7 +679,7 @@ datadog:
     enabled: true
 
     # datadog.processAgent.processCollection -- Set this to true to enable process collection
-    processCollection: false
+    processCollection: true
 
     # datadog.processAgent.stripProcessArguments -- Set this to scrub all arguments from collected processes
     ## Requires datadog.processAgent.processCollection to be set to true to have any effect
@@ -1558,10 +1558,10 @@ agents:
   ## Provide Daemonset RBAC configuration
   rbac:
     # agents.rbac.create -- If true, create & use RBAC resources
-    create: true
+    create: false
 
     # agents.rbac.serviceAccountName -- Specify a preexisting ServiceAccount to use if agents.rbac.create is false
-    serviceAccountName: default
+    serviceAccountName: datadog-otel-agent
 
     # agents.rbac.serviceAccountAnnotations -- Annotations to add to the ServiceAccount if agents.rbac.create is true
     serviceAccountAnnotations: {}

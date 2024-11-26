@@ -454,125 +454,125 @@ metadata:
 #    {}
 #---
 # Source: opentelemetry-demo/templates/flagd-config.yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: opentelemetry-demo-flagd-config
-  namespace: otel-demo
-  labels:
-    opentelemetry.io/name: opentelemetry-demo
-    app.kubernetes.io/instance: opentelemetry-demo
-    app.kubernetes.io/name: opentelemetry-demo
-    app.kubernetes.io/version: "1.12.0"
-    app.kubernetes.io/part-of: opentelemetry-demo
-data:
-  demo.flagd.json: |
-    {
-      "$schema": "https://flagd.dev/schema/v0/flags.json",
-      "flags": {
-        "productCatalogFailure": {
-          "description": "Fail product catalog service on a specific product",
-          "state": "ENABLED",
-          "variants": {
-            "on": true,
-            "off": false
-          },
-          "defaultVariant": "off"
-        },
-        "recommendationServiceCacheFailure": {
-          "description": "Fail recommendation service cache",
-          "state": "ENABLED",
-          "variants": {
-            "on": true,
-            "off": false
-          },
-          "defaultVariant": "off"
-        },
-        "adServiceManualGc": {
-          "description": "Triggers full manual garbage collections in the ad service",
-          "state": "ENABLED",
-          "variants": {
-            "on": true,
-            "off": false
-          },
-          "defaultVariant": "off"
-        },
-        "adServiceHighCpu": {
-          "description": "Triggers high cpu load in the ad service",
-          "state": "ENABLED",
-          "variants": {
-            "on": true,
-            "off": false
-          },
-          "defaultVariant": "off"
-        },
-        "adServiceFailure": {
-          "description": "Fail ad service",
-          "state": "ENABLED",
-          "variants": {
-            "on": true,
-            "off": false
-          },
-          "defaultVariant": "off"
-        },
-        "kafkaQueueProblems": {
-          "description": "Overloads Kafka queue while simultaneously introducing a consumer side delay leading to a lag spike",
-          "state": "ENABLED",
-          "variants": {
-            "on": 100,
-            "off": 0
-          },
-          "defaultVariant": "off"
-        },
-        "cartServiceFailure": {
-          "description": "Fail cart service",
-          "state": "ENABLED",
-          "variants": {
-            "on": true,
-            "off": false
-          },
-          "defaultVariant": "off"
-        },
-        "paymentServiceFailure": {
-          "description": "Fail payment service charge requests",
-          "state": "ENABLED",
-          "variants": {
-            "on": true,
-            "off": false
-          },
-          "defaultVariant": "off"
-        },
-        "paymentServiceUnreachable": {
-          "description": "Payment service is unavailable",
-          "state": "ENABLED",
-          "variants": {
-            "on": true,
-            "off": false
-          },
-          "defaultVariant": "off"
-        },
-        "loadgeneratorFloodHomepage": {
-          "description": "Flood the frontend with a large amount of requests.",
-          "state": "ENABLED",
-          "variants": {
-            "on": 100,
-            "off": 0
-          },
-          "defaultVariant": "off"
-        },
-        "imageSlowLoad": {
-          "description": "slow loading images in the frontend",
-          "state": "ENABLED",
-          "variants": {
-            "10sec": 10000,
-            "5sec": 5000,
-            "off": 0
-          },
-          "defaultVariant": "off"
-        }
-      }
-    }
----
+#apiVersion: v1
+#kind: ConfigMap
+#metadata:
+#  name: opentelemetry-demo-flagd-config
+#  namespace: otel-demo
+#  labels:
+#    opentelemetry.io/name: opentelemetry-demo
+#    app.kubernetes.io/instance: opentelemetry-demo
+#    app.kubernetes.io/name: opentelemetry-demo
+#    app.kubernetes.io/version: "1.12.0"
+#    app.kubernetes.io/part-of: opentelemetry-demo
+#data:
+#  demo.flagd.json: |
+#    {
+#      "$schema": "https://flagd.dev/schema/v0/flags.json",
+#      "flags": {
+#        "productCatalogFailure": {
+#          "description": "Fail product catalog service on a specific product",
+#          "state": "ENABLED",
+#          "variants": {
+#            "on": true,
+#            "off": false
+#          },
+#          "defaultVariant": "off"
+#        },
+#        "recommendationServiceCacheFailure": {
+#          "description": "Fail recommendation service cache",
+#          "state": "ENABLED",
+#          "variants": {
+#            "on": true,
+#            "off": false
+#          },
+#          "defaultVariant": "off"
+#        },
+#        "adServiceManualGc": {
+#          "description": "Triggers full manual garbage collections in the ad service",
+#          "state": "ENABLED",
+#          "variants": {
+#            "on": true,
+#            "off": false
+#          },
+#          "defaultVariant": "off"
+#        },
+#        "adServiceHighCpu": {
+#          "description": "Triggers high cpu load in the ad service",
+#          "state": "ENABLED",
+#          "variants": {
+#            "on": true,
+#            "off": false
+#          },
+#          "defaultVariant": "off"
+#        },
+#        "adServiceFailure": {
+#          "description": "Fail ad service",
+#          "state": "ENABLED",
+#          "variants": {
+#            "on": true,
+#            "off": false
+#          },
+#          "defaultVariant": "off"
+#        },
+#        "kafkaQueueProblems": {
+#          "description": "Overloads Kafka queue while simultaneously introducing a consumer side delay leading to a lag spike",
+#          "state": "ENABLED",
+#          "variants": {
+#            "on": 100,
+#            "off": 0
+#          },
+#          "defaultVariant": "off"
+#        },
+#        "cartServiceFailure": {
+#          "description": "Fail cart service",
+#          "state": "ENABLED",
+#          "variants": {
+#            "on": true,
+#            "off": false
+#          },
+#          "defaultVariant": "off"
+#        },
+#        "paymentServiceFailure": {
+#          "description": "Fail payment service charge requests",
+#          "state": "ENABLED",
+#          "variants": {
+#            "on": true,
+#            "off": false
+#          },
+#          "defaultVariant": "off"
+#        },
+#        "paymentServiceUnreachable": {
+#          "description": "Payment service is unavailable",
+#          "state": "ENABLED",
+#          "variants": {
+#            "on": true,
+#            "off": false
+#          },
+#          "defaultVariant": "off"
+#        },
+#        "loadgeneratorFloodHomepage": {
+#          "description": "Flood the frontend with a large amount of requests.",
+#          "state": "ENABLED",
+#          "variants": {
+#            "on": 100,
+#            "off": 0
+#          },
+#          "defaultVariant": "off"
+#        },
+#        "imageSlowLoad": {
+#          "description": "slow loading images in the frontend",
+#          "state": "ENABLED",
+#          "variants": {
+#            "10sec": 10000,
+#            "5sec": 5000,
+#            "off": 0
+#          },
+#          "defaultVariant": "off"
+#        }
+#      }
+#    }
+#---
 # Source: opentelemetry-demo/templates/grafana-dashboards.yaml
 # Source: opentelemetry-demo/charts/grafana/templates/clusterrole.yaml
 #kind: ClusterRole
@@ -1102,29 +1102,29 @@ spec:
     opentelemetry.io/name: opentelemetry-demo-emailservice
 ---
 # Source: opentelemetry-demo/templates/component.yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: opentelemetry-demo-flagd
-  labels:
-    opentelemetry.io/name: opentelemetry-demo-flagd
-    app.kubernetes.io/instance: opentelemetry-demo
-    app.kubernetes.io/component: flagd
-    app.kubernetes.io/name: opentelemetry-demo-flagd
-    app.kubernetes.io/version: "1.12.0"
-    app.kubernetes.io/part-of: opentelemetry-demo
-spec:
-  type: ClusterIP
-  ports:
-    - port: 8013
-      name: tcp-service
-      targetPort: 8013
-    - port: 4000
-      name: tcp-service-0
-      targetPort: 4000
-  selector:
-    opentelemetry.io/name: opentelemetry-demo-flagd
----
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: opentelemetry-demo-flagd
+#  labels:
+#    opentelemetry.io/name: opentelemetry-demo-flagd
+#    app.kubernetes.io/instance: opentelemetry-demo
+#    app.kubernetes.io/component: flagd
+#    app.kubernetes.io/name: opentelemetry-demo-flagd
+#    app.kubernetes.io/version: "1.12.0"
+#    app.kubernetes.io/part-of: opentelemetry-demo
+#spec:
+#  type: ClusterIP
+#  ports:
+#    - port: 8013
+#      name: tcp-service
+#      targetPort: 8013
+#    - port: 4000
+#      name: tcp-service-0
+#      targetPort: 4000
+#  selector:
+#    opentelemetry.io/name: opentelemetry-demo-flagd
+#---
 # Source: opentelemetry-demo/templates/component.yaml
 apiVersion: v1
 kind: Service
@@ -1820,7 +1820,7 @@ spec:
                   apiVersion: v1
                   fieldPath: metadata.labels['app.kubernetes.io/component']
             - name: OTEL_COLLECTOR_NAME
-              value: "datadog.datadog.svc.cluster.local"
+              value: "opentelemetry-collector.platform.svc.cluster.local"
             - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
               value: cumulative
             - name: KAFKA_SERVICE_ADDR
@@ -1884,7 +1884,7 @@ spec:
                   apiVersion: v1
                   fieldPath: metadata.labels['app.kubernetes.io/component']
             - name: OTEL_COLLECTOR_NAME
-              value: "datadog.datadog.svc.cluster.local"
+              value: "opentelemetry-collector.platform.svc.cluster.local"
             - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
               value: cumulative
             - name: AD_SERVICE_PORT
@@ -1946,7 +1946,7 @@ spec:
                   apiVersion: v1
                   fieldPath: metadata.labels['app.kubernetes.io/component']
             - name: OTEL_COLLECTOR_NAME
-              value: "datadog.datadog.svc.cluster.local"
+              value: "opentelemetry-collector.platform.svc.cluster.local"
             - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
               value: cumulative
             - name: CART_SERVICE_PORT
@@ -1971,8 +1971,8 @@ spec:
         - command:
             - sh
             - -c
-            - until nc -z -v -w30 opentelemetry-demo-valkey 6379; do echo waiting
-              for valkey; sleep 2; done;
+            - until nc -z -v -w30 opentelemetry-demo-valkey 6379; do echo
+              waiting for valkey; sleep 2; done;
           image: busybox:latest
           name: wait-for-valkey
       volumes:
@@ -2018,7 +2018,7 @@ spec:
                   apiVersion: v1
                   fieldPath: metadata.labels['app.kubernetes.io/component']
             - name: OTEL_COLLECTOR_NAME
-              value: "datadog.datadog.svc.cluster.local"
+              value: "opentelemetry-collector.platform.svc.cluster.local"
             - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
               value: cumulative
             - name: CHECKOUT_SERVICE_PORT
@@ -2100,7 +2100,7 @@ spec:
                   apiVersion: v1
                   fieldPath: metadata.labels['app.kubernetes.io/component']
             - name: OTEL_COLLECTOR_NAME
-              value: "datadog.datadog.svc.cluster.local"
+              value: "opentelemetry-collector.platform.svc.cluster.local"
             - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
               value: cumulative
             - name: CURRENCY_SERVICE_PORT
@@ -2158,7 +2158,7 @@ spec:
                   apiVersion: v1
                   fieldPath: metadata.labels['app.kubernetes.io/component']
             - name: OTEL_COLLECTOR_NAME
-              value: "datadog.datadog.svc.cluster.local"
+              value: "opentelemetry-collector.platform.svc.cluster.local"
             - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
               value: cumulative
             - name: EMAIL_SERVICE_PORT
@@ -2176,113 +2176,113 @@ spec:
       volumes:
 ---
 # Source: opentelemetry-demo/templates/component.yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: opentelemetry-demo-flagd
-  labels:
-    opentelemetry.io/name: opentelemetry-demo-flagd
-    app.kubernetes.io/instance: opentelemetry-demo
-    app.kubernetes.io/component: flagd
-    app.kubernetes.io/name: opentelemetry-demo-flagd
-    app.kubernetes.io/version: "1.12.0"
-    app.kubernetes.io/part-of: opentelemetry-demo
-spec:
-  replicas: 1
-  revisionHistoryLimit: 10
-  selector:
-    matchLabels:
-      opentelemetry.io/name: opentelemetry-demo-flagd
-  template:
-    metadata:
-      labels:
-        opentelemetry.io/name: opentelemetry-demo-flagd
-        app.kubernetes.io/instance: opentelemetry-demo
-        app.kubernetes.io/component: flagd
-        app.kubernetes.io/name: opentelemetry-demo-flagd
-    spec:
-      serviceAccountName: opentelemetry-demo
-      containers:
-        - name: flagd
-          image: "ghcr.io/open-feature/flagd:v0.11.1"
-          imagePullPolicy: IfNotPresent
-          command:
-            - /flagd-build
-            - start
-            - --uri
-            - file:./etc/flagd/demo.flagd.json
-          ports:
-            - containerPort: 8013
-              name: service
-          env:
-            - name: OTEL_SERVICE_NAME
-              valueFrom:
-                fieldRef:
-                  apiVersion: v1
-                  fieldPath: metadata.labels['app.kubernetes.io/component']
-            - name: OTEL_COLLECTOR_NAME
-              value: "datadog.datadog.svc.cluster.local"
-            - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
-              value: cumulative
-            - name: FLAGD_METRICS_EXPORTER
-              value: otel
-            - name: FLAGD_OTEL_COLLECTOR_URI
-              value: $(OTEL_COLLECTOR_NAME):4317
-            - name: OTEL_RESOURCE_ATTRIBUTES
-              value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=1.12.0
-          resources:
-            limits:
-              memory: 50Mi
-          volumeMounts:
-            - name: config-rw
-              mountPath: /etc/flagd
-        - name: flagdui
-          image: "ghcr.io/open-telemetry/demo:1.12.0-flagdui"
-          imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 4000
-              name: service
-          env:
-            - name: OTEL_SERVICE_NAME
-              valueFrom:
-                fieldRef:
-                  apiVersion: v1
-                  fieldPath: metadata.labels['app.kubernetes.io/component']
-            - name: OTEL_COLLECTOR_NAME
-              value: "opentelemetry-demo-otelcol"
-            - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
-              value: cumulative
-            - name: FLAGD_METRICS_EXPORTER
-              value: otel
-            - name: OTEL_EXPORTER_OTLP_ENDPOINT
-              value: http://$(OTEL_COLLECTOR_NAME):4317
-            - name: OTEL_RESOURCE_ATTRIBUTES
-              value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=1.12.0
-          resources:
-            limits:
-              memory: 150Mi
-          volumeMounts:
-            - mountPath: /app/data
-              name: config-rw
-      initContainers:
-        - command:
-            - sh
-            - -c
-            - cp /config-ro/demo.flagd.json /config-rw/demo.flagd.json && cat /config-rw/demo.flagd.json
-          image: busybox
-          name: init-config
-          volumeMounts:
-            - mountPath: /config-ro
-              name: config-ro
-            - mountPath: /config-rw
-              name: config-rw
-      volumes:
-        - name: config-rw
-          emptyDir: {}
-        - configMap:
-            name: "opentelemetry-demo-flagd-config"
-          name: config-ro
----
+#apiVersion: apps/v1
+#kind: Deployment
+#metadata:
+#  name: opentelemetry-demo-flagd
+#  labels:
+#    opentelemetry.io/name: opentelemetry-demo-flagd
+#    app.kubernetes.io/instance: opentelemetry-demo
+#    app.kubernetes.io/component: flagd
+#    app.kubernetes.io/name: opentelemetry-demo-flagd
+#    app.kubernetes.io/version: "1.12.0"
+#    app.kubernetes.io/part-of: opentelemetry-demo
+#spec:
+#  replicas: 1
+#  revisionHistoryLimit: 10
+#  selector:
+#    matchLabels:
+#      opentelemetry.io/name: opentelemetry-demo-flagd
+#  template:
+#    metadata:
+#      labels:
+#        opentelemetry.io/name: opentelemetry-demo-flagd
+#        app.kubernetes.io/instance: opentelemetry-demo
+#        app.kubernetes.io/component: flagd
+#        app.kubernetes.io/name: opentelemetry-demo-flagd
+#    spec:
+#      serviceAccountName: opentelemetry-demo
+#      containers:
+#        - name: flagd
+#          image: "ghcr.io/open-feature/flagd:v0.11.1"
+#          imagePullPolicy: IfNotPresent
+#          command:
+#            - /flagd-build
+#            - start
+#            - --uri
+#            - file:./etc/flagd/demo.flagd.json
+#          ports:
+#            - containerPort: 8013
+#              name: service
+#          env:
+#            - name: OTEL_SERVICE_NAME
+#              valueFrom:
+#                fieldRef:
+#                  apiVersion: v1
+#                  fieldPath: metadata.labels['app.kubernetes.io/component']
+#            - name: OTEL_COLLECTOR_NAME
+#              value: "opentelemetry-collector.platform.svc.cluster.local"
+#            - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
+#              value: cumulative
+#            - name: FLAGD_METRICS_EXPORTER
+#              value: otel
+#            - name: FLAGD_OTEL_COLLECTOR_URI
+#              value: $(OTEL_COLLECTOR_NAME):4317
+#            - name: OTEL_RESOURCE_ATTRIBUTES
+#              value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=1.12.0
+#          resources:
+#            limits:
+#              memory: 50Mi
+#          volumeMounts:
+#            - name: config-rw
+#              mountPath: /etc/flagd
+#        - name: flagdui
+#          image: "ghcr.io/open-telemetry/demo:1.12.0-flagdui"
+#          imagePullPolicy: IfNotPresent
+#          ports:
+#            - containerPort: 4000
+#              name: service
+#          env:
+#            - name: OTEL_SERVICE_NAME
+#              valueFrom:
+#                fieldRef:
+#                  apiVersion: v1
+#                  fieldPath: metadata.labels['app.kubernetes.io/component']
+#            - name: OTEL_COLLECTOR_NAME
+#              value: "opentelemetry-demo-otelcol"
+#            - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
+#              value: cumulative
+#            - name: FLAGD_METRICS_EXPORTER
+#              value: otel
+#            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+#              value: http://$(OTEL_COLLECTOR_NAME):4317
+#            - name: OTEL_RESOURCE_ATTRIBUTES
+#              value: service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version=1.12.0
+#          resources:
+#            limits:
+#              memory: 150Mi
+#          volumeMounts:
+#            - mountPath: /app/data
+#              name: config-rw
+#      initContainers:
+#        - command:
+#            - sh
+#            - -c
+#            - cp /config-ro/demo.flagd.json /config-rw/demo.flagd.json && cat /config-rw/demo.flagd.json
+#          image: busybox
+#          name: init-config
+#          volumeMounts:
+#            - mountPath: /config-ro
+#              name: config-ro
+#            - mountPath: /config-rw
+#              name: config-rw
+#      volumes:
+#        - name: config-rw
+#          emptyDir: {}
+#        - configMap:
+#            name: "opentelemetry-demo-flagd-config"
+#          name: config-ro
+#---
 # Source: opentelemetry-demo/templates/component.yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -2321,7 +2321,7 @@ spec:
                   apiVersion: v1
                   fieldPath: metadata.labels['app.kubernetes.io/component']
             - name: OTEL_COLLECTOR_NAME
-              value: "datadog.datadog.svc.cluster.local"
+              value: "opentelemetry-collector.platform.svc.cluster.local"
             - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
               value: cumulative
             - name: KAFKA_SERVICE_ADDR
@@ -2389,7 +2389,7 @@ spec:
                   apiVersion: v1
                   fieldPath: metadata.labels['app.kubernetes.io/component']
             - name: OTEL_COLLECTOR_NAME
-              value: "datadog.datadog.svc.cluster.local"
+              value: "opentelemetry-collector.platform.svc.cluster.local"
             - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
               value: cumulative
             - name: FRONTEND_PORT
@@ -2475,7 +2475,7 @@ spec:
                   apiVersion: v1
                   fieldPath: metadata.labels['app.kubernetes.io/component']
             - name: OTEL_COLLECTOR_NAME
-              value: "datadog.datadog.svc.cluster.local"
+              value: "opentelemetry-collector.platform.svc.cluster.local"
             - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
               value: cumulative
             - name: ENVOY_PORT
@@ -2569,7 +2569,7 @@ spec:
                   apiVersion: v1
                   fieldPath: metadata.labels['app.kubernetes.io/component']
             - name: OTEL_COLLECTOR_NAME
-              value: "datadog.datadog.svc.cluster.local"
+              value: "opentelemetry-collector.platform.svc.cluster.local"
             - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
               value: cumulative
             - name: IMAGE_PROVIDER_PORT
@@ -2629,7 +2629,7 @@ spec:
                   apiVersion: v1
                   fieldPath: metadata.labels['app.kubernetes.io/component']
             - name: OTEL_COLLECTOR_NAME
-              value: "datadog.datadog.svc.cluster.local"
+              value: "opentelemetry-collector.platform.svc.cluster.local"
             - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
               value: cumulative
             - name: KAFKA_ADVERTISED_LISTENERS
@@ -2691,7 +2691,7 @@ spec:
                   apiVersion: v1
                   fieldPath: metadata.labels['app.kubernetes.io/component']
             - name: OTEL_COLLECTOR_NAME
-              value: "datadog.datadog.svc.cluster.local"
+              value: "opentelemetry-collector.platform.svc.cluster.local"
             - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
               value: cumulative
             - name: LOCUST_WEB_PORT
@@ -2765,7 +2765,7 @@ spec:
                   apiVersion: v1
                   fieldPath: metadata.labels['app.kubernetes.io/component']
             - name: OTEL_COLLECTOR_NAME
-              value: "datadog.datadog.svc.cluster.local"
+              value: "opentelemetry-collector.platform.svc.cluster.local"
             - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
               value: cumulative
             - name: PAYMENT_SERVICE_PORT
@@ -2829,7 +2829,7 @@ spec:
                   apiVersion: v1
                   fieldPath: metadata.labels['app.kubernetes.io/component']
             - name: OTEL_COLLECTOR_NAME
-              value: "datadog.datadog.svc.cluster.local"
+              value: "opentelemetry-collector.platform.svc.cluster.local"
             - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
               value: cumulative
             - name: PRODUCT_CATALOG_SERVICE_PORT
@@ -2889,7 +2889,7 @@ spec:
                   apiVersion: v1
                   fieldPath: metadata.labels['app.kubernetes.io/component']
             - name: OTEL_COLLECTOR_NAME
-              value: "datadog.datadog.svc.cluster.local"
+              value: "opentelemetry-collector.platform.svc.cluster.local"
             - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
               value: cumulative
             - name: QUOTE_SERVICE_PORT
@@ -2951,7 +2951,7 @@ spec:
                   apiVersion: v1
                   fieldPath: metadata.labels['app.kubernetes.io/component']
             - name: OTEL_COLLECTOR_NAME
-              value: "datadog.datadog.svc.cluster.local"
+              value: "opentelemetry-collector.platform.svc.cluster.local"
             - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
               value: cumulative
             - name: RECOMMENDATION_SERVICE_PORT
@@ -3017,7 +3017,7 @@ spec:
                   apiVersion: v1
                   fieldPath: metadata.labels['app.kubernetes.io/component']
             - name: OTEL_COLLECTOR_NAME
-              value: "datadog.datadog.svc.cluster.local"
+              value: "opentelemetry-collector.platform.svc.cluster.local"
             - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
               value: cumulative
             - name: SHIPPING_SERVICE_PORT
@@ -3075,7 +3075,7 @@ spec:
                   apiVersion: v1
                   fieldPath: metadata.labels['app.kubernetes.io/component']
             - name: OTEL_COLLECTOR_NAME
-              value: "datadog.datadog.svc.cluster.local"
+              value: "opentelemetry-collector.platform.svc.cluster.local"
             - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
               value: cumulative
             - name: OTEL_RESOURCE_ATTRIBUTES

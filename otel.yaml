@@ -30,8 +30,22 @@ processors:
     timeout: 10s
     send_batch_max_size: 10000 # default 0, no limit.
     send_batch_size: 8192 # default is 8192
+  # https://github.com/open-telemetry/opentelemetry-collector/blob/main/processor/memorylimiterprocessor/README.md
+  memory_limiter:
+    check_interval: 1s
+    limit_percentage: 50
+    spike_limit_percentage: 30
+  resource/k8s:
+    attributes:
+      - key: service.name
+        action: upsert
+        from_attribute: opentelemetry.io/name
   k8sattributes:
     extract:
+      labels:
+        - from: pod
+          key: opentelemetry.io/name
+          tag_name: opentelemetry.io/name
       metadata:
         - k8s.namespace.name
         - k8s.deployment.name
@@ -47,8 +61,6 @@ processors:
         - k8s.container.name
         - container.image.name
         - container.image.tag
-    filter:
-      node_from_env_var: K8S_NODE_NAME
     passthrough: false
     pod_association:
       - sources:
@@ -59,6 +71,34 @@ processors:
             name: k8s.pod.ip
       - sources:
           - from: connection
+  transform/datadog:
+    metric_statements:
+      - context: resource
+        statements:
+          - set(attributes["datadog.host.name"], "dot")
+          - delete_key(attributes, "k8s.job.name")
+          - delete_key(attributes, "k8s.cronjob.name")
+          - delete_key(attributes, "k8s.daemonset.name")
+          - delete_key(attributes, "k8s.deployment.name")
+          - delete_key(attributes, "k8s.namespace.name")
+          - delete_key(attributes, "k8s.replicaset.name")
+          - delete_key(attributes, "k8s.statefulset.name")
+          - delete_key(attributes, "k8s.cluster.name")
+    trace_statements:
+      - context: resource
+        statements:
+          - set(attributes["datadog.host.name"], "dot")
+    log_statements:
+      - context: resource
+        statements:
+          - set(attributes["datadog.host.name"], "dot")
+  filter/datadog:
+    error_mode: ignore
+    traces:
+      span:
+        - |
+          resource.attributes["service.name"] != "opentelemetry-demo-cartservice" and
+          resource.attributes["service.name"] != "opentelemetry-demo-productcatalogservice"
 connectors:
   datadog/connector:
     traces:
@@ -71,14 +111,32 @@ service:
       level: info
   pipelines:
     traces:
-      receivers: [otlp]
-      processors: [infraattributes, batch]
-      exporters: [datadog, datadog/connector]
+      receivers:
+        - otlp
+      processors:
+        - infraattributes
+        - k8sattributes
+        - resource/k8s
+        - transform/datadog
+        - filter/datadog
+        - memory_limiter
+        - batch
+      exporters:
+        - datadog
+        - datadog/connector
+        - debug
     metrics:
-      receivers: [otlp, datadog/connector, prometheus]
-      processors: [infraattributes, batch]
-      exporters: [datadog]
-    logs:
-      receivers: [otlp]
-      processors: [infraattributes, batch]
-      exporters: [datadog]
+      receivers:
+        - otlp
+        - datadog/connector
+      processors:
+        - infraattributes
+        - k8sattributes
+        - resource/k8s
+        - transform/datadog
+        - filter/datadog
+        - memory_limiter
+        - batch
+      exporters:
+        - datadog
+        #- debug
