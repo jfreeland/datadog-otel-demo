@@ -1930,6 +1930,8 @@ spec:
         app.kubernetes.io/instance: opentelemetry-demo
         app.kubernetes.io/component: cartservice
         app.kubernetes.io/name: opentelemetry-demo-cartservice
+      annotations:
+        ad.datadoghq.com/cartservice.logs: '[{"service": "cartservice"}]'
     spec:
       serviceAccountName: opentelemetry-demo
       containers:
@@ -2813,6 +2815,9 @@ spec:
         app.kubernetes.io/instance: opentelemetry-demo
         app.kubernetes.io/component: productcatalogservice
         app.kubernetes.io/name: opentelemetry-demo-productcatalogservice
+      annotations:
+        ad.datadoghq.com/productcatalogservice.logs:
+          '[{"service": "productcatalogservice"}]'
     spec:
       serviceAccountName: opentelemetry-demo
       containers:
