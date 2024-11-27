@@ -7,11 +7,13 @@ with the built in collector.
 kind create cluster -n dot --kubeconfig ~/.kube/config
 helm repo add datadog https://helm.datadoghq.com
 helm repo update
-kubectl create ns platform
-kubectl apply -f rbac.yaml
+kc create ns platform
+# NOTE: envFrom
+#envsubst < secret.yaml | kc apply -f -
+kc apply -f rbac.yaml
 # update apiKey and appKey in values.yaml
 helm upgrade --create-namespace -n platform --install datadog --set-file datadog.otelCollector.config=otel.yaml -f agent-values.yaml datadog/datadog
-kubectl apply -f otel-demo.yaml
+kc apply -f otel-demo.yaml
 kind delete cluster -n dot
 ```
 

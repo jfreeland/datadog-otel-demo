@@ -38,7 +38,7 @@ datadog:
   # datadog.apiKeyExistingSecret -- Use existing Secret which stores API key instead of creating a new one. The value should be set with the `api-key` key inside the secret.
 
   ## If set, this parameter takes precedence over "apiKey".
-  apiKeyExistingSecret: # <DATADOG_API_KEY_SECRET>
+  apiKeyExistingSecret: datadog-api-key
 
   # datadog.appKey -- Datadog APP key required to use metricsProvider
 
@@ -49,7 +49,7 @@ datadog:
   # datadog.appKeyExistingSecret -- Use existing Secret which stores APP key instead of creating a new one. The value should be set with the `app-key` key inside the secret.
 
   ## If set, this parameter takes precedence over "appKey".
-  appKeyExistingSecret: # <DATADOG_APP_KEY_SECRET>
+  appKeyExistingSecret: datadog-api-key
 
   # agents.secretAnnotations -- Annotations to add to the Secrets
   secretAnnotations: {}
@@ -616,11 +616,12 @@ datadog:
   # datadog.envFrom -- Set environment variables for all Agents directly from configMaps and/or secrets
 
   ## envFrom to pass configmaps or secrets as environment
-  envFrom: []
+  # NOTE: This does not work.
+  envFrom:
+    - secretRef:
+        name: datadog-api-key
   #   - configMapRef:
   #       name: <CONFIGMAP_NAME>
-  #   - secretRef:
-  #       name: <SECRET_NAME>
 
   # datadog.env -- Set environment variables for all Agents
 
@@ -1646,7 +1647,10 @@ agents:
           value: dot
 
       # agents.containers.agent.envFrom -- Set environment variables specific to agent container from configMaps and/or secrets
-      envFrom: []
+      # NOTE: This does not work.
+      #envFrom:
+      #  - secretRef:
+      #      name: datadog-api-key
       #   - configMapRef:
       #       name: <CONFIGMAP_NAME>
       #   - secretRef:

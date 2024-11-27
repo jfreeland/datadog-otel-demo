@@ -1,1 +1,1 @@
-.env filter=git-crypt diff=git-crypt
+.envrc filter=git-crypt diff=git-crypt
