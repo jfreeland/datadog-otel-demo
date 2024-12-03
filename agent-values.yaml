@@ -474,7 +474,7 @@ datadog:
     # datadog.apm.socketEnabled -- Enable APM over Socket (Unix Socket or windows named pipe)
 
     ## ref: https://docs.datadoghq.com/agent/kubernetes/apm/
-    socketEnabled: true
+    socketEnabled: false
 
     # datadog.apm.portEnabled -- Enable APM over TCP communication (hostPort 8126 by default)
 
@@ -1120,10 +1120,10 @@ datadog:
   containerInclude:
 
   # datadog.containerExcludeLogs -- Exclude logs from Agent Autodiscovery, as a space-separated list
-  containerExcludeLogs:
+  containerExcludeLogs: "name:.*"
 
   # datadog.containerIncludeLogs -- Include logs in Agent Autodiscovery, as a space-separated list
-  containerIncludeLogs:
+  containerIncludeLogs: "name:cartservice name:productcatalogservice"
 
   # datadog.containerExcludeMetrics -- Exclude metrics from Agent Autodiscovery, as a space-separated list
   containerExcludeMetrics:
