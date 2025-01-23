@@ -2699,9 +2699,13 @@ spec:
             - name: LOCUST_WEB_PORT
               value: "8089"
             - name: LOCUST_USERS
-              value: "10"
-            - name: LOCUST_SPAWN_RATE
+              # TODO: Change these back
+              #value: "10"
               value: "1"
+            - name: LOCUST_SPAWN_RATE
+              # TODO: Change these back
+              #value: "1"
+              value: "10"
             - name: LOCUST_HOST
               value: http://opentelemetry-demo-frontendproxy:8080
             - name: LOCUST_HEADLESS

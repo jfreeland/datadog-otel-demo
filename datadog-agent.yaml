@@ -122,7 +122,8 @@ datadog:
   dd_url: # https://app.datadoghq.com
 
   # datadog.logLevel -- Set logging verbosity, valid log levels are: trace, debug, info, warn, error, critical, off
-  logLevel: INFO
+  #logLevel: INFO
+  logLevel: info
 
   # datadog.kubeStateMetricsEnabled -- If true, deploys the kube-state-metrics deployment
 
@@ -617,6 +618,18 @@ datadog:
           #    - cluster:${cluster:=notset}
           traces:
             trace_buffer: 1000
+        elasticsearch:
+          endpoints: ["http://opensearch-cluster-master.opensearch.svc.cluster.local:9200"]
+          index: "otel_logs"
+          traces_index: "ot_traces"
+          metrics_index: "ot_metrics"
+          auth:
+            authenticator: basicauth
+      extensions:
+        basicauth:
+          client_auth:
+            username: admin
+            password: "/0penSearchPassword?"
       processors:
         infraattributes:
           cardinality: 2
@@ -700,6 +713,8 @@ datadog:
             peer_tags_aggregation: true
             compute_stats_by_span_kind: true
       service:
+        extensions:
+          - basicauth
         telemetry:
           logs:
             level: info
@@ -718,6 +733,7 @@ datadog:
             exporters:
               - datadog
               - datadog/connector
+              - elasticsearch
               - debug
           metrics:
             receivers:
@@ -1665,7 +1681,9 @@ agents:
     name: agent
 
     # agents.image.tag -- Define the Agent version to use
-    tag: 7-ot-beta-rc
+    #tag: 7-ot-beta-rc
+    #tag: 7.59.0-v1.1.0-ot-beta
+    tag: 7-otel-test
 
     # agents.image.digest -- Define Agent image digest to use, takes precedence over tag if specified
     digest: ""
@@ -1678,7 +1696,7 @@ agents:
     tagSuffix: ""
 
     # agents.image.repository -- Override default registry + image.name for Agent
-    repository:
+    repository: joeyfreeland/datadog-agent
 
     # agents.image.doNotCheckTag -- Skip the version and chart compatibility check
 
