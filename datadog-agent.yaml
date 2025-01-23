@@ -618,13 +618,22 @@ datadog:
           #    - cluster:${cluster:=notset}
           traces:
             trace_buffer: 1000
-        elasticsearch:
-          endpoints: ["http://opensearch-cluster-master.opensearch.svc.cluster.local:9200"]
-          index: "otel_logs"
-          traces_index: "ot_traces"
-          metrics_index: "ot_metrics"
-          auth:
-            authenticator: basicauth
+        opensearch:
+          http:
+            endpoint: https://opensearch-cluster-master.opensearch.svc.cluster.local:9200
+            auth:
+              authenticator: basicauth
+            tls:
+              insecure_skip_verify: true
+        #elasticsearch:
+        #  endpoints: ["https://opensearch-cluster-master.opensearch.svc.cluster.local:9200"]
+        #  index: "otel_logs"
+        #  traces_index: "ot_traces"
+        #  metrics_index: "ot_metrics"
+        #  auth:
+        #    authenticator: basicauth
+        #  tls:
+        #    insecure_skip_verify: true
       extensions:
         basicauth:
           client_auth:
@@ -733,7 +742,8 @@ datadog:
             exporters:
               - datadog
               - datadog/connector
-              - elasticsearch
+              #- elasticsearch
+              - opensearch
               - debug
           metrics:
             receivers:

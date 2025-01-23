@@ -26,6 +26,7 @@ exporters:
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/sapmexporter v0.104.0
   # NOTE: Elasticsearch exporter is not included by default
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/elasticsearchexporter v0.104.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/opensearchexporter v0.104.0
 
 processors:
   - gomod: go.opentelemetry.io/collector/processor/batchprocessor v0.104.0
