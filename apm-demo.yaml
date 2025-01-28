@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apm-demo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: apm-demo
+  template:
+    metadata:
+      labels:
+        app: apm-demo
+    spec:
+      containers:
+        - name: apm-demo
+          image: joeyfreeland/apm-demo:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DD_AGENT_HOST
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: apm-demo
+spec:
+  selector:
+    app: apm-demo
+  ports:
+    - port: 80
+      targetPort: 8080

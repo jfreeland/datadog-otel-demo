@@ -8,6 +8,9 @@ https://docs.datadoghq.com/opentelemetry/agent/agent_with_custom_components/.
 docker build . -f Dockerfile.agent-otel -t joeyfreeland/datadog-agent:7-otel-test --no-cache
 docker push joeyfreeland/datadog-agent:7-otel-test
 
+docker build . -f Dockerfile.apm-demo -t joeyfreeland/apm-demo:latest
+docker push joeyfreeland/apm-demo:latest
+
 kind create cluster -n dot --kubeconfig ~/.kube/config
 kc create ns platform
 kc apply -f otel-demo.yaml
@@ -24,6 +27,10 @@ kc apply -f rbac.yaml
 #helm upgrade --create-namespace -n platform --install datadog --set-file datadog.otelCollector.config=otel.yaml -f datadog-agent.yaml datadog/datadog
 helm repo add datadog https://helm.datadoghq.com && helm repo update
 helm upgrade --create-namespace -n platform --install datadog -f datadog-agent.yaml datadog/datadog
+
+kc apply -f apm-demo.yaml
+# port forward
+while true ; do curl localhost:8080/user && echo && sleep 10 ; done
 
 kind delete cluster -n dot
 ```

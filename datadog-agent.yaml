@@ -480,7 +480,7 @@ datadog:
     # datadog.apm.portEnabled -- Enable APM over TCP communication (hostPort 8126 by default)
 
     ## ref: https://docs.datadoghq.com/agent/kubernetes/apm/
-    portEnabled: false
+    portEnabled: true
 
     # datadog.apm.useLocalService -- Enable APM over TCP communication to use the local service only (requires Kubernetes v1.22+)
     # Note: The hostPort 8126 is disabled when this is enabled.
@@ -492,7 +492,7 @@ datadog:
     # DEPRECATED. Use datadog.apm.portEnabled instead
 
     ## ref: https://github.com/DataDog/docker-dd-agent#tracing-from-the-host
-    enabled: false
+    enabled: true
 
     # datadog.apm.port -- Override the trace Agent port
 
