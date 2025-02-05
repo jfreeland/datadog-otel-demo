@@ -8,8 +8,10 @@ https://docs.datadoghq.com/opentelemetry/agent/agent_with_custom_components/.
 docker build . -f Dockerfile.agent-otel -t joeyfreeland/datadog-agent:7-otel-test --no-cache
 docker push joeyfreeland/datadog-agent:7-otel-test
 
-docker build . -f Dockerfile.apm-demo -t joeyfreeland/apm-demo:latest
+docker build apm-demo -f Dockerfile -t joeyfreeland/apm-demo:latest
 docker push joeyfreeland/apm-demo:latest
+
+docker buildx build --platform linux/amd64,linux/arm64 -t joeyfreeland/otel-metrics-demo:latest --push otel-metrics-demo
 
 kind create cluster -n dot --kubeconfig ~/.kube/config
 kc create ns platform
